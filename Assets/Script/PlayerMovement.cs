@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-
         {
             anim.enabled = true;
             anim.SetTrigger("BackwardAnimation");
