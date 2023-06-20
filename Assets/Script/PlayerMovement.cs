@@ -27,37 +27,34 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+
         {
+            anim.enabled = true;
             anim.SetTrigger("BackwardAnimation");
         }
-        if (Input.GetKeyUp(KeyCode.W))
+
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            anim.SetTrigger("BackwardsIdle");
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
+            anim.enabled = true;
             anim.SetTrigger("ForwardAnimation");
         }
-        if (Input.GetKeyUp(KeyCode.S))
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            anim.SetTrigger("ForwardIdle");
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
+            anim.enabled = true;
             anim.SetTrigger("LeftAnimation");
         }
-        if (Input.GetKeyUp(KeyCode.A))
+        
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            anim.SetTrigger("LeftIdle");
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
+            anim.enabled = true;
             anim.SetTrigger("RightAnimation");
         }
-        if (Input.GetKeyUp(KeyCode.D))
+        
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            anim.SetTrigger("RightIdle");
+            anim.enabled = false;
         }
     }
     // For physics calculations

@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Backgronud
+    uniqueID: 2317927249
+    locked: 0
+  - name: Floors
+    uniqueID: 3113168843
+    locked: 0
+  - name: Walls
+    uniqueID: 3832046865
+    locked: 0
+  - name: Player
+    uniqueID: 7610367
+    locked: 0
