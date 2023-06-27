@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     //Access our Animator to play animations
     public Animator anim;
 
+    //Coin counter
+    public int coinsCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,34 +31,37 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            anim.enabled = true;
-            anim.SetTrigger("BackwardAnimation");
-        }
+        //if (input.getkeydown(keycode.w) || input.getkeydown(keycode.uparrow))
+        //{
+        //    anim.enabled = true;
+        //    anim.settrigger("backwardanimation");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            anim.enabled = true;
-            anim.SetTrigger("ForwardAnimation");
-        }
+        //if (input.getkeydown(keycode.s) || input.getkeydown(keycode.downarrow))
+        //{
+        //    anim.enabled = true;
+        //    anim.settrigger("forwardanimation");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            anim.enabled = true;
-            anim.SetTrigger("LeftAnimation");
-        }
-        
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            anim.enabled = true;
-            anim.SetTrigger("RightAnimation");
-        }
-        
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            anim.enabled = false;
-        }
+        //if (input.getkeydown(keycode.a) || input.getkeydown(keycode.leftarrow))
+        //{
+        //    anim.enabled = true;
+        //    anim.settrigger("leftanimation");
+        //}
+
+        //if (input.getkeydown(keycode.d) || input.getkeydown(keycode.rightarrow))
+        //{
+        //    anim.enabled = true;
+        //    anim.settrigger("rightanimation");
+        //}
+
+        //if (input.getkeyup(keycode.w) || input.getkeyup(keycode.uparrow) || input.getkeyup(keycode.s) || input.getkeyup(keycode.downarrow) || input.getkeyup(keycode.s) || input.getkeyup(keycode.downarrow) || input.getkeyup(keycode.a) || input.getkeyup(keycode.leftarrow) || input.getkeyup(keycode.d) || input.getkeyup(keycode.rightarrow))
+        //{
+        //    anim.enabled = false;
+        //}
+        anim.SetFloat("Horizontal", movementInput.x);
+        anim.SetFloat("Vertical", movementInput.y);
+        anim.SetFloat("Speed", movementInput.sqrMagnitude);
     }
     // For physics calculations
     private void FixedUpdate()
@@ -74,5 +81,13 @@ public class PlayerMovement : MonoBehaviour
     {
         //WASD = to Vector 2 values
         movementInput = inputValue.Get<Vector2>();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coins"))
+        {
+            Destroy(collision.gameObject);
+            coinsCount++;
+        }
     }
 }
