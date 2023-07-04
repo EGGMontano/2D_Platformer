@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     //Coin counter
     public int coinsCount;
 
+    //PLayer Health
+    public int healthPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Horizontal", movementInput.x);
         anim.SetFloat("Vertical", movementInput.y);
         anim.SetFloat("Speed", movementInput.sqrMagnitude);
+
     }
     // For physics calculations
     private void FixedUpdate()
@@ -88,6 +92,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
             coinsCount++;
+        }
+        if (collision.gameObject.CompareTag("Buffs"))
+        {
+            Transform col = collision.transform;
+            col.transform.position = new Vector2(999, 999);
         }
     }
 }
