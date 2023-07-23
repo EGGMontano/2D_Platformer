@@ -39,7 +39,6 @@ public class TrapManager : MonoBehaviour
 
     public void PlayerDamage()
     {
-
         player.healthPoints -= trapDamage;
     }
 }
